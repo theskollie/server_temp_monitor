@@ -1,6 +1,5 @@
 const express = require('express');
 const { exec } = require('child_process');
-const os = require('os-utils');
 
 const app = express();
 
@@ -22,7 +21,8 @@ app.get('/temp', (_, res) => {
     const tempF = Math.round((tempC * 9) / 5 + 32);
     os.cpuUsage((v) => {
       const cpuUsage = Math.round(v * 100);
-      res.json({ celsius: tempC, fahrenheit: tempF, cpuUsage });
+      const memoryUsage = 100 - freeMemoryPercentage();
+      res.json({ celsius: tempC, fahrenheit: tempF, cpuUsage, memoryUsage });
     });
   });
 });
