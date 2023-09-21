@@ -20,9 +20,10 @@ app.get('/temp', (_, res) => {
     const tempArray = tempString.split('=');
     const tempC = parseFloat(tempArray[1]);
     const tempF = Math.round((tempC * 9) / 5 + 32);
-    const cpuUsage = Math.round(os.cpuUsage((v) => v) * 100);
-
-    res.json({ celsius: tempC, fahrenheit: tempF, cpuUsage });
+    os.cpuUsage((v) => {
+      const cpuUsage = Math.round(v * 100);
+      res.json({ celsius: tempC, fahrenheit: tempF, cpuUsage });
+    });
   });
 });
 
