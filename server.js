@@ -1,7 +1,7 @@
 const express = require('express');
 const { exec } = require('child_process');
 const os = require('os-utils');
-const { freeMemoryPercentage } = require('./utils');
+const { freeMemoryPercentage } = require('./lib/utils');
 
 const app = express();
 
